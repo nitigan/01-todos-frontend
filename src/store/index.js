@@ -21,6 +21,9 @@ export const store = new Vuex.Store({
     },
     REMOVE_TODO (state, index) {
       state.todos.splice(index, 1)
+    },
+    CHANGE_COMPLETED (state, payload) {
+      state.todos[payload.index].completed = payload.status
     }
   },
   actions: {
@@ -32,8 +35,10 @@ export const store = new Vuex.Store({
     },
     removeTodos ({commit}, index) {
       commit('REMOVE_TODO', index)
+    },
+    changeCompleted ({commit}, payload) {
+      commit('CHANGE_COMPLETED', payload)
     }
-
   },
   getters: {
     todos: state => state.todos,
